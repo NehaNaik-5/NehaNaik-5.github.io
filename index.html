@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neha Naik — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #085041;
+      --green-mid: #0F6E56;
+      --green: #1D9E75;
+      --green-light: #5DCAA5;
+      --green-pale: #E1F5EE;
+      --lime-pale: #EAF3DE;
+      --amber-pale: #FAEEDA;
+      --amber: #EF9F27;
+      --purple-pale: #EEEDFE;
+      --purple: #3C3489;
+      --coral-pale: #FAECE7;
+      --coral: #993C1D;
+      --pink-pale: #FBEAF0;
+      --pink: #723156;
+      --text-primary: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e0e0da;
+      --bg: #fff;
+      --bg-secondary: #f6f6f2;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 0.5px solid var(--border);
+      position: sticky; top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+    }
+    .nav-logo { font-size: 18px; font-weight: 600; color: var(--green); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--green-pale) 0%, var(--lime-pale) 50%, var(--amber-pale) 100%);
+      padding: 5rem 2rem 4rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; font-weight: 600; margin-bottom: 1.25rem;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 16px rgba(29,158,117,0.25);
+    }
+    .hero h1 { font-size: 32px; font-weight: 600; color: var(--green-dark); margin-bottom: 0.4rem; }
+    .hero .tagline { font-size: 15px; color: var(--green-mid); margin-bottom: 1rem; font-weight: 500; }
+    .hero .bio {
+      font-size: 14px; color: #3B6D11; max-width: 580px;
+      line-height: 1.75; margin-bottom: 1.5rem;
+    }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 1.5rem; }
+    .badge {
+      font-size: 12px; padding: 4px 12px; border-radius: 20px; font-weight: 500;
+      background: #fff; border: 0.5px solid var(--green-light); color: var(--green-mid);
+    }
+    .contact-row { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      font-size: 13px; padding: 8px 18px; border-radius: var(--radius-md);
+      border: 1px solid var(--green); color: var(--green);
+      background: transparent; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.2s; font-family: inherit;
+    }
+    .btn:hover { background: var(--green-pale); }
+    .btn.filled { background: var(--green); color: #fff; }
+    .btn.filled:hover { background: var(--green-mid); }
+
+    /* SECTIONS */
+    .section-wrap { max-width: 860px; margin: 0 auto; padding: 3rem 2rem; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem;
+    }
+    .section-title { font-size: 22px; font-weight: 600; margin-bottom: 1.75rem; }
+    .divider { height: 0.5px; background: var(--border); }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .project-card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      border-color: var(--green-light);
+      box-shadow: 0 4px 16px rgba(29,158,117,0.08);
+    }
+    .tag {
+      font-size: 11px; padding: 3px 10px; border-radius: 12px;
+      font-weight: 500; display: inline-block; margin-bottom: 0.75rem;
+    }
+    .tag-ongoing { background: var(--amber-pale); color: #854F0B; }
+    .tag-ml { background: var(--green-pale); color: var(--green-mid); }
+    .tag-nlp { background: var(--purple-pale); color: var(--purple); }
+    .tag-cv { background: var(--coral-pale); color: var(--coral); }
+    .tag-genai { background: var(--pink-pale); color: var(--pink); }
+    .tag-ml2 { background: var(--lime-pale); color: #3B6D11; }
+
+    .inprogress-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--amber); display: inline-block;
+      margin-right: 5px; vertical-align: middle;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .project-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; }
+    .project-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0.75rem; }
+    .tech-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .chip {
+      font-size: 11px; padding: 2px 8px; border-radius: 10px;
+      background: var(--bg-secondary); color: var(--text-secondary);
+      border: 0.5px solid var(--border);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 14px;
+    }
+    .skill-group {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+    }
+    .skill-group h4 {
+      font-size: 11px; font-weight: 600; color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.9px; margin-bottom: 0.65rem;
+    }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    /* EXPERIENCE */
+    .exp-item {
+      margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.25rem; }
+    .exp-role { font-size: 15px; font-weight: 600; }
+    .exp-company { font-size: 13px; color: var(--green); margin-bottom: 0.4rem; }
+    .exp-date { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .exp-points { padding-left: 1.1rem; }
+    .exp-points li { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* CERTS */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 10px;
+    }
+    .cert-card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .cert-card i { color: var(--amber); font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+    .cert-card span { font-size: 13px; line-height: 1.4; color: var(--text-primary); }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem 1rem;
+      font-size: 13px; color: var(--text-muted);
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 3rem 1rem 2.5rem; }
+      .hero h1 { font-size: 24px; }
+      .section-wrap { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Neha Naik</span>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="avatar">NN</div>
+  <h1>Neha Naik</h1>
+  <p class="tagline">SDET · Test Automation Expert · AI/ML Enthusiast · PhD Aspirant</p>
+  <p class="bio">
+    5 years of industry experience building AI-powered tools, automation frameworks, and ML solutions.
+    Passionate about applying data science to real-world problems in agriculture, healthcare, and software quality.
+  </p>
+  <div class="hero-badges">
+    <span class="badge">🤖 Generative AI</span>
+    <span class="badge">🌾 AgriTech</span>
+    <span class="badge">🧪 Test Automation</span>
+    <span class="badge">📊 Deep Learning</span>
+    <span class="badge">🐳 Docker</span>
+  </div>
+  <div class="contact-row">
+    <a class="btn filled" href="https://github.com/NehaNaik-5" target="_blank" rel="noopener">
+      <i class="ti ti-brand-github"></i> GitHub
+    </a>
+    <a class="btn" href="mailto:nehavnaik23@gmail.com">
+      <i class="ti ti-mail"></i> Email Me
+    </a>
+    <span class="btn" style="cursor:default; pointer-events:none;">
+      <i class="ti ti-map-pin"></i> Clemson, SC
+    </span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <p class="section-label">What I've built</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <span class="tag tag-ongoing"><span class="inprogress-dot"></span>In Progress</span>
+      <h3>AgroSense</h3>
+      <p>
+        IoT-style agricultural monitoring system. Simulates sensor data (soil moisture, temperature, pH),
+        validates entries, stores clean data in InfluxDB, and visualises it in Grafana.
+        Now adding time-series forecasting using Prophet and LSTM models.
+      </p>
+      <div class="tech-chips">
+        <span class="chip">Python</span>
+        <span class="chip">InfluxDB</span>
+        <span class="chip">Grafana</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Prophet</span>
+        <span class="chip">LSTM</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="tag tag-ml">Multi-Agent AI</span>
+      <h3>Precision Farming Advisor</h3>
+      <p>
+        Multi-agent AI system built with Google ADK that gives farmers data-driven planting
+        and resource management plans. Integrates real-time weather and market data to
+        optimise fertiliser and water usage.
+      </p>
+      <div class="tech-chips">
+        <span class="chip">Google ADK</span>
+        <span class="chip">Python</span>
+        <span class="chip">Multi-Agent</span>
+        <span class="chip">Real-time APIs</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="tag tag-genai">GenAI</span>
+      <h3>Defect Creation with GenAI</h3>
+      <p>
+        Used LLMs to automatically generate structured defect reports from test results.
+        Reduces manual effort and standardises defect logging across the QA team.
+      </p>
+      <div class="tech-chips">
+        <span class="chip">LLMs</span>
+        <span class="chip">Python</span>
+        <span class="chip">Jira API</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="tag tag-nlp">NLP</span>
+      <h3>Sentiment Analysis of Tweets</h3>
+      <p>
+        Processed four Twitter datasets and compared ML and deep learning models for sentiment
+        classification, evaluating accuracy and time complexity at scale.
+      </p>
+      <div class="tech-chips">
+        <span class="chip">Python</span>
+        <span class="chip">Keras</span>
+        <span class="chip">NLP</span>
+        <span class="chip">PyTorch</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="tag tag-cv">Computer Vision</span>
+      <h3>Crankshaft Defect Detection</h3>
+      <p>
+        CNN-based model to detect defects in crankshafts. Applied image processing filters
+        to enhance features and improve detection accuracy.
+      </p>
+      <div class="tech-chips">
+        <span class="chip">CNN</span>
+        <span class="chip">OpenCV</span>
+        <span class="chip">Python</span>
+        <span class="chip">Keras</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="tag tag-ml2">ML</span>
+      <h3>House Price Predictor</h3>
+      <p>
+        Compared linear regression, decision trees, and ensemble models on a Kaggle dataset
+        to predict housing prices with high accuracy.
+      </p>
+      <div class="tech-chips">
+        <span class="chip">Scikit-learn</span>
+        <span class="chip">Pandas</span>
+        <span class="chip">NumPy</span>
+        <span class="chip">Kaggle</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <p class="section-label">What I work with</p>
+  <h2 class="section-title">Skills &amp; Tools</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Programming</h4>
+      <div class="skill-list">
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip">C</span>
+        <span class="chip">C++</span>
+        <span class="chip">Shell</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>AI / ML</h4>
+      <div class="skill-list">
+        <span class="chip">Keras</span>
+        <span class="chip">PyTorch</span>
+        <span class="chip">Scikit-learn</span>
+        <span class="chip">Prophet</span>
+        <span class="chip">LSTM</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Data &amp; Infra</h4>
+      <div class="skill-list">
+        <span class="chip">InfluxDB</span>
+        <span class="chip">Grafana</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Pandas</span>
+        <span class="chip">NumPy</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Testing</h4>
+      <div class="skill-list">
+        <span class="chip">Selenium</span>
+        <span class="chip">Robot Framework</span>
+        <span class="chip">Postman</span>
+        <span class="chip">Jenkins</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>DevOps &amp; PM</h4>
+      <div class="skill-list">
+        <span class="chip">Git</span>
+        <span class="chip">Jenkins</span>
+        <span class="chip">Jira</span>
+        <span class="chip">Agile</span>
+        <span class="chip">SAFe</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>GenAI</h4>
+      <div class="skill-list">
+        <span class="chip">LLMs</span>
+        <span class="chip">Google ADK</span>
+        <span class="chip">Prompt Engineering</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <p class="section-label">Where I've worked</p>
+  <h2 class="section-title">Experience &amp; Education</h2>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <p class="exp-role">Software Development Engineer in Test</p>
+        <p class="exp-company">Amdocs, India</p>
+      </div>
+      <span class="exp-date">2019 – 2024</span>
+    </div>
+    <ul class="exp-points">
+      <li>Built "Triage Horse" — an AI-powered defect management tool for the QA team</li>
+      <li>Designed a GenAI solution to automatically generate structured defect reports</li>
+      <li>Led end-to-end POC tool development from idea to delivery</li>
+      <li>Maintained and expanded the automation framework for continuous testing</li>
+      <li>Received client appreciation and monetary recognition for outstanding work</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <p class="exp-role">M.Tech — Computer Science &amp; IT</p>
+        <p class="exp-company">Walchand College of Engineering, India</p>
+      </div>
+      <span class="exp-date">2017 – 2019</span>
+    </div>
+    <ul class="exp-points">
+      <li>CGPA: 8.23 / 10</li>
+      <li>Best Poster Presentation — National Research Symposium on Computing 2018</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <p class="exp-role">B.E. — Computer Science &amp; Engineering</p>
+        <p class="exp-company">Jawaharlal Nehru Engineering College, India</p>
+      </div>
+      <span class="exp-date">2011 – 2015</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<div class="section-wrap">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <i class="ti ti-award"></i>
+      <span>Azure Fundamentals</span>
+    </div>
+    <div class="cert-card">
+      <i class="ti ti-award"></i>
+      <span>SAFe Certification (2021)</span>
+    </div>
+    <div class="cert-card">
+      <i class="ti ti-award"></i>
+      <span>Introduction to Agentic AI (2025)</span>
+    </div>
+    <div class="cert-card">
+      <i class="ti ti-award"></i>
+      <span>Foundation of Project Management (2025)</span>
+    </div>
+    <div class="cert-card">
+      <i class="ti ti-award"></i>
+      <span>Adobe Photoshop Foundations (2026)</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <p>
+    Let's connect →
+    <a href="mailto:nehavnaik23@gmail.com">nehavnaik23@gmail.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/NehaNaik-5" target="_blank" rel="noopener">github.com/NehaNaik-5</a>
+    &nbsp;·&nbsp;
+    Clemson, SC
+  </p>
+  <p style="margin-top: 0.5rem; font-size: 12px;">© 2026 Neha Naik</p>
+</footer>
+
+</body>
+</html>
